@@ -1,10 +1,10 @@
 node_modules/
 dist/
-# .vscode/
-# config/
+.vscode/
+config/
 .env
-# .babelrc
-# nodemon.json
-# webpack.config.js
-# yarn.lock
-# jest.config.js
+.babelrc
+nodemon.json
+webpack.config.js
+yarn.lock
+jest.config.js

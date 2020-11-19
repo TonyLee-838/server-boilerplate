@@ -1,7 +1,9 @@
-module.exports = (error, req, res, next) => {
+module.exports = (error, _, res) => {
   const message = error.message;
+
   if (process.env.NODE_ENV === "development")
-    console.warn("Error!: ", message, error.stack);
+    console.warn("Error Detected!: ", message, error.stack);
+
   if (message.startsWith("ValidationError"))
     return res.status(400).send(message);
 
@@ -13,9 +15,6 @@ module.exports = (error, req, res, next) => {
 
   if (message.startsWith("NotFoundError")) return res.status(404).send(message);
 
-  console.error({ message: "InternalNetworkError", stack: error.stack });
-
-  res
-    .status("500")
-    .send({ message: "InternalNetworkError", stack: error.stack });
+  const internalError = { message: "InternalServerError", stack: error.stack };
+  res.status(500).send(internalError);
 };
