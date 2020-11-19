@@ -8,25 +8,31 @@ App is Implemented with:
 - Express
 - Mongodb/mongoose (Database)
 
+All endpoints are tested using _Jest_ library.
+
 ## Functionality
 
 - User Register/Login
 - Route protection(Authorization)
+- Error Logging
+
+## Development Configs
+- webpack config
+- nodemon config
 
 ## Authentication
-
 This app allows user to register/login by calling corresponding api endpoint.
 
 ### User Object Model
   - User
      - type: `String`
-     - length: 3 - 50
+     - length: 3 - 50 characters
    - Password
      - type: `String`
-     - length: 6 - 1025
+     - length: 6 - 1025 characters
    - Email
      - type: `String` (valid email address)
-     - length : 6 - 255
+     - length : 6 - 255 characters
      - Each of email in the database should be **unique**.
 
 ### Register
