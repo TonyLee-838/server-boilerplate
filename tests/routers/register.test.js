@@ -35,8 +35,8 @@ describe("Registration User API /api/register", () => {
 
     it("should return authentication token if registration successes.", async () => {
       const response = await exec();
-      console.log("response: ", response.headers);
-      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty("name", name);
+      expect(response.headers["x-auth-token"]).toBeDefined();
     });
 
     it("should return 400 if invalid input provided", async () => {

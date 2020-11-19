@@ -18,35 +18,6 @@ describe("Users API /api/users", () => {
     await server.close();
   });
 
-  // describe("POST /", () => {
-  //   let name;
-
-  //   beforeEach(() => {
-  //     name = "testUser1";
-  //   });
-  //   const exec = async () => {
-  //     const testUser = {
-  //       name,
-  //       password: "password1",
-  //       email: "testEmail1@test.com",
-  //     };
-
-  //     return await request(server).post("/api/users").send(testUser);
-  //   };
-
-  //   it("should return 400 if invalid input provided", async () => {
-  //     name = "";
-
-  //     const response = await exec();
-  //     expect(response.status).toBe(400);
-  //   });
-
-  //   it("should return created user if valid provided ", async () => {
-  //     const response = await exec();
-  //     expect(response.body.name).toMatch(name);
-  //   });
-  // });
-
   describe("PUT /:id", () => {
     let user;
     let id;

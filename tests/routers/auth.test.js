@@ -30,9 +30,9 @@ describe("Authentication API /api/auth", () => {
         .post("/api/auth")
         .send({ email, password });
 
+      expect(token).toBeDefined();
       const payload = jwt.verify(token, env("jwt_secret_key"));
-
-      expect(payload.email).toEqual(email);
+      expect(payload).toHaveProperty("_id");
     });
   });
 });

@@ -24,16 +24,19 @@ const getUserById = asyncWrapper(async (req, res) => {
 });
 
 const createUser = asyncWrapper(async (req, res) => {
-  const user = { ...req.body };
+  let user = { ...req.body };
 
   const { error } = validate(user);
   if (error) throw new Error("ValidationError:Invalid user provided!");
 
   const salt = await bcrypt.genSalt();
   const hashed = await bcrypt.hash(user.password, salt);
+  user.password = hashed;
 
-  const response = await insertNewUserIntoDB({ ...user, password: hashed });
-  res.send(response);
+  user = await insertNewUserIntoDB(user);
+
+  const token = user.getAuthToken();
+  res.header("x-auth-token", token).send(_.pick(user, ["name", "email"]));
 });
 
 const updateUser = asyncWrapper(async (req, res) => {

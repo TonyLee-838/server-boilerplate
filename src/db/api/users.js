@@ -11,9 +11,7 @@ const getUserFormDB = (condition) => {
 };
 
 const insertNewUserIntoDB = (data) => {
-  return new User(data).save({
-    new: true,
-  });
+  return new User(data).save();
 };
 
 const insertUpdatedUserIntoDB = async (id, data) => {

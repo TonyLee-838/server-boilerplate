@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
-const jwt_secret_key = require("config").get("jwt_secret_key");
+const { env } = require("../../helper/config");
+// const JwtSecretKey = require("config").get("jwt_secret_key");
 
 const requiredString = {
   type: String,
@@ -29,8 +30,15 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+userSchema.methods.getAuthToken = function () {
+  return jwt.sign(
+    { _id: this._id, isAdmin: this.isAdmin },
+    env("jwt_secret_key")
+  );
+};
+
 userSchema.static.genJwtToken = (payload) =>
-  jwt.sign(payload, process.env[jwt_secret_key]);
+  jwt.sign(payload, env("jwt_secret_key"));
 
 const User = mongoose.model("user", userSchema);
 
