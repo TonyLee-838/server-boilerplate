@@ -1,0 +1,9 @@
+{
+  "dbConfig": {
+    "baseURL": "mongodb://127.0.0.1:27017",
+    "dbName": "my-post-test",
+    "dbPassword": "DB_PASSWORD"
+  },
+  "jwt_secret_key": "MY_TEST_PRIVATE_KEY",
+  "port": "TEST_PORT"
+}
